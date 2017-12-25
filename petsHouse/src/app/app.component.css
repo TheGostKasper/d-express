@@ -1,0 +1,23 @@
+.ul-c{
+    display: inline-flex;
+    list-style: none;
+}
+
+.pet{
+    height: 370px;
+    background: #efefef;
+    border-radius: 9px;
+    padding: 20px;
+    margin-left: 2px;
+    width: 250px;
+}
+.p-img{
+    width: 100%;
+    height: 150px;
+}
+.entry-content p{
+    width: 250px;
+}
+.post-meta{
+    display: inline-flex;
+}

@@ -1,0 +1,35 @@
+<ul *ngIf="cats.length>0" class="ul-c">
+  <li *ngFor="let cat of cats" class="pet">
+    <!-- Post Content -->
+    <div class="post-content">
+      <div class="entry-footer">
+          <h3 class="entry-title">{{cat.name}}, Age: {{cat.age}}</h3>
+          <i><img class="p-img" [src]="cat.image" alt="admin-ic"></i>
+      </div>
+      <div class="entry-content">
+        <p>{{cat.description}}</p>
+      </div>
+      <!-- <div class="post-meta">
+        <div class="post-d">
+          <span>{{cat.date}}</span>
+          <span>{{cat.date}}</span>
+        </div>
+        <div class="post-d">
+          <i><img src="http://premiumlayers.net/demo/html/petcare/images/icon/comment.png" alt="Comment"></i>
+          <a href="#">28</a>
+        </div>
+        <div class="post-d">
+          <i><img src="http://premiumlayers.net/demo/html/petcare/images/icon/blog-like.png" alt="Comment"></i>
+          <a href="#">22</a>
+        </div>
+        <div class="post-d">
+          <a href="#"><i><img src="http://premiumlayers.net/demo/html/petcare/images/icon/share.png" alt="Comment"></i>Share</a>
+        </div>
+      </div> -->
+    </div>
+    <!-- Post Content /- -->
+  </li>
+</ul>
+<div class="no-pet" *ngIf="cats.length==0">
+  <p>NO PETS</p>
+</div>
