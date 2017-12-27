@@ -2,12 +2,15 @@ var express= require('express');
 var app=express();
 var bodyParser= require('body-parser');
 
+var mdb=require('./mongodb');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extented:true
 }));
 
-var cats=require('./cats.js')(app);
+var cats=require('./app/controllers/cats.js')(app);
+
 
 var Server=app.listen(3000,function(){
     console.log('Server running at whatever');    
