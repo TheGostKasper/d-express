@@ -1,17 +1,23 @@
-var express= require('express');
-var app=express();
-var bodyParser= require('body-parser');
-
-var mdb=require('./mongodb');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config'); // get our config file
+var mdb = require('./mongodb');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extented:true
+    extented: true
 }));
+app.set('superSecret', config.secret);
+var middleware = require('./app/controllers/middleware.js')(app);
+var pets = require('./app/controllers/pets.js')(app);
+var users = require('./app/controllers/users.js')(app);
 
-var cats=require('./app/controllers/cats.js')(app);
+// use morgan to log requests to the console
+app.use(morgan('dev'));
 
-
-var Server=app.listen(3000,function(){
-    console.log('Server running at whatever');    
+var Server = app.listen(3000, function () {
+    console.log('Server running at whatever');
 });
