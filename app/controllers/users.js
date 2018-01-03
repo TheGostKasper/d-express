@@ -1,12 +1,12 @@
 var User = require('./../models/user');
-var jwt    = require('jsonwebtoken'); 
+var jwt = require('jsonwebtoken');
 
 module.exports = function (app) {
     app.post('/api/user', (req, res) => {
         if (req.body.length > 1)
             req.body.forEach(function (element) {
                 addUser(element);
-            },this);
+            }, this);
         else {
             addUser(req.body);
         }
@@ -39,7 +39,6 @@ module.exports = function (app) {
                 data: Users,
                 message: "200"
             });
-
         });
     }
     app.get('/api/user/:id', (req, res) => {
@@ -70,7 +69,7 @@ module.exports = function (app) {
     });
 
     app.delete('/api/user/:id', (req, res) => {
-        User.findOneAndRemove({ _id: req.params.id }, function (err,user) {
+        User.findOneAndRemove({ _id: req.params.id }, function (err, user) {
             if (err) res.send({
                 data: null,
                 err: err
@@ -83,25 +82,27 @@ module.exports = function (app) {
     })
 
 
-    app.post('/api/login', (req, res) => {
+    app.post('/login', (req, res) => {
         var _body = req.body;
+        console.log(_body)
         User.findOne({ email: _body.email, password: _body.password }
             , (err, user) => {
-                if (err) res.json({
+                if (err || !user) return res.json({
                     data: null,
                     message: "Authentication faild, Username or password is incorect"
                 });
+                else {
+                    const payload = {
+                        user: user
+                    };
+                    var token = jwt.sign(payload, app.get('superSecret'));
+                   return res.json({
+                        data: user,
+                        token: token,
+                        message: "Welcome back! "
+                    })
+                }
 
-                const payload = {
-                    user: user
-                  };
-                var token = jwt.sign(payload, app.get('superSecret'));
-
-                res.json({
-                    data: user,
-                    token: token,
-                    message: "Welcome back! "
-                })
             })
     })
 }

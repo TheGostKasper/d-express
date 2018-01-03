@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { PetService } from './services/app.service.pet';
+import { AuthenticationService } from './services/app.authentication';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,8 @@ import { PetService } from './services/app.service.pet';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
-  cats = [];
-  constructor(private petService: PetService) { }
+  constructor() {
+  }
   ngOnInit() {
-    this.loadUser();
   }
-
-  loadUser() {
-    this.petService.getCats().subscribe(data => this.cats = data);
-  }
-
-
 }

@@ -1,8 +1,19 @@
 .ul-c{
-    display: inline-flex;
+    display: flex;
     list-style: none;
+    background: #1d8260;
 }
-
+.ul-c li{
+    padding: 10px;
+}
+.ul-c li:hover{
+    background: #ECC207;
+}
+.ul-c li a{
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+}
 .pet{
     height: 370px;
     background: #efefef;

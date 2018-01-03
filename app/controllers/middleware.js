@@ -4,7 +4,12 @@ module.exports = app => {
 
     app.all('/api/*', (req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Headers", "access-control-allow-headers,access-control-allow-origin,content-type");
+        next();
+    })
+    app.all('/login', (req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "access-control-allow-headers,access-control-allow-origin,content-type");
         next();
     })
     app.all('/api/*', (req, res, next) => {
