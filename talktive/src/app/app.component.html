@@ -1,0 +1,16 @@
+<header class="header">
+  <ul class="ul-c">
+    <li>
+      <a routerLink="/dashboard">Dashboard</a>
+    </li>
+    <li>
+      <a routerLink="/users">Heroes</a>
+    </li>
+    <li class="login right">
+      <a>{{loginStatus}}</a>
+    </li>
+  </ul>
+</header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
