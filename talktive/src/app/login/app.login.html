@@ -1,27 +1,54 @@
-<div class="container">
-    <div class="sign row">
-        <div class="col-md-6 col-sm-12">
-            <div class="margin-20 login">
-                <form (ngSubmit)="login(user)">
-                    <h3>Login</h3>
-                    <div class="form">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="form-control" placeholder="Email">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
-                            <input type="password" id="passwords" name="passwords" [(ngModel)]="user.password" required class="form-control" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-4">
-                                <button type="submit" class="btn btn-red pull-right">Login</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+<div class="row">
+    <div class="col-sm _info">
+        <div class="image">
+            <img src="./assets/img/logo.png" class="center">
+        </div>
+        <div class="content">
+            <p>Find out what you are looking at without wasting your time switching different websites. </p>
         </div>
     </div>
-
+    <div class="col-sm _login">
+        <form (ngSubmit)="login(user)" class="form-horizontal lform">
+            <p class="intro center">Log in to see more!</p>
+            <div class="form-group">
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
+            </div>
+            <div class="form-group center">
+                <button type="submit" class="btn llogin">Log in</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm _lbl">
+        <div class="content">
+            <span class="sec">Don't miss a beat from any of the publications you trust</span>
+            <span class="sec">Dive deeper by following blogs from the latest movers, shakers, and thinkers. Follow any one on the web.</span>
+            <span class="sec">See new videos from the YouTube channels you follow - in the same place you read the rest of your news.</span>
+            <span class="sec">Crunch through more content in less time by organizing your sources into easy-to-read feeds.</span>
+        </div>
+    </div>
+    <div class="col-sm black">
+        <form class="form-horizontal lform">
+            <p class="intro center">You're more welcome!</p>
+            <div class="form-group">
+                <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input class="intp" placeholder="Username" name="name" required [(ngModel)]="user.name">
+            </div>
+            <div class="form-group">
+                <input class="intp" placeholder="Mobile number" name="phone" required [(ngModel)]="user.phone">
+            </div>
+            <div class="form-group center">
+                <button type="submit" class="btn llogin">Sign up</button>
+            </div>
+        </form>
+    </div>
 </div>

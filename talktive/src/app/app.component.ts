@@ -10,10 +10,14 @@ import { AuthenticationService } from './services/app.authentication';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loginStatus: string;
+  token: boolean;
 
   constructor() {
-    this.loginStatus = (localStorage.getItem('token')) ? 'Welcome' : 'login';
+    this.token = (localStorage.getItem('token')) ? true : false;
+  }
+  logout() {
+    localStorage.removeItem('token');
+    location.href = '/login';
   }
   ngOnInit() {
   }

@@ -1,0 +1,65 @@
+._info{
+    background: #224c74;
+}
+
+._login{
+    background: #d44949;
+}
+.black{
+    color: #d44949;
+    background: #343a40;
+}
+._lbl{
+    background:#4CAF50;
+}
+.intp{
+    width: 100%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    text-align: center;
+    height: 40px;
+}
+.lform{
+    padding:10px;
+}
+.center{
+    display: block;
+    text-align: -webkit-center;
+}
+.llogin{
+    border-radius: 20px;
+    background: #fff;
+    color: #1da1f2;
+    background-color: #fff;
+    border: 1px solid #1da1f2;
+    font-weight: 500;
+}
+.llogin:hover{
+    color: #ffffff;
+    background: #d44949;
+    border-color: #ffffff
+}
+
+.intro{
+    color: white;
+}
+
+.image img{
+    padding: 15px;
+    background: #ff9800;
+}
+
+.sec{
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    display: inline-table;
+}
+.content p{
+    padding: 10px;
+    color: white;
+
+}
+.navbar{
+    display: none !important;
+}

@@ -14,6 +14,9 @@ app.set('superSecret', config.secret);
 var middleware = require('./app/controllers/middleware.js')(app);
 var pets = require('./app/controllers/pets.js')(app);
 var users = require('./app/controllers/users.js')(app);
+var interests = require('./app/controllers/interests.js')(app);
+var sourceFeed = require('./app/controllers/sourceFeed.js')(app);
+
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));

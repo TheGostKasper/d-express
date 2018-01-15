@@ -4,23 +4,14 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app.routes';
 import { FormsModule } from '@angular/forms';
-
-import { PetService } from './services/app.service.pet';
-import { AuthenticationService } from './services/app.authentication';
-
+import { Container } from './container.modules';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './users/app.user';
-import { PetsComponent } from './pets/app.pets';
-import { LoginComponent } from './login/app.login';
+
+const ctr = new Container();
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserComponent,
-    PetsComponent,
-    LoginComponent
-  ],
+  declarations: ctr.declarations,
   imports: [
     BrowserModule,
     FormsModule,
@@ -29,7 +20,7 @@ import { LoginComponent } from './login/app.login';
     AppRoutingModule
   ],
   exports: [RouterModule],
-  providers: [AuthenticationService, PetService],
+  providers: ctr.providers,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

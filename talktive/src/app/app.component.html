@@ -1,16 +1,28 @@
-<header class="header">
-  <ul class="ul-c">
-    <li>
-      <a routerLink="/dashboard">Dashboard</a>
-    </li>
-    <li>
-      <a routerLink="/users">Heroes</a>
-    </li>
-    <li class="login right">
-      <a>{{loginStatus}}</a>
-    </li>
-  </ul>
-</header>
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+<!-- fixed-top -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">TalkTive</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="interested">Interested In</a>
+            </li>
+
+        </ul>
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <input type="button" value="logout" class="btn btn-danger" (click)="logout()" *ngIf="token">
+        </div>
+
+    </div>
+</nav>
+<router-outlet></router-outlet>
