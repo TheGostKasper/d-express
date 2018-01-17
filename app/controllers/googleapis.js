@@ -1,4 +1,7 @@
 const google = require('googleapis');
+const Feed = require('rss-to-json');
+const https = require('https');
+
 const customsearch = google.customsearch({
     version: 'v1',
     auth: "AIzaSyCUVE6IwH9T4pdiFlhRu0OaWN-U5QNbmgg"
@@ -40,6 +43,15 @@ module.exports = function (app) {
             });
             res.json({
                 data: data,
+                message: "200"
+            });
+        });
+    });
+
+    app.get('/api/wamda', (req, res) => {
+        Feed.load('https://www.wamda.com/feed', function (err, rss) {
+            res.json({
+                data: rss,
                 message: "200"
             });
         });
