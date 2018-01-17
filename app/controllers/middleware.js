@@ -1,7 +1,5 @@
 var jwt = require('jsonwebtoken');
-
 module.exports = app => {
-
     app.all('/api/*', (req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "access-control-allow-headers,access-control-allow-origin,content-type");
