@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 import { PetService } from './../services/app.service.pet';
 import { AuthenticationService } from './../services/app.authentication';
 
@@ -24,13 +23,18 @@ export class LoginComponent implements OnInit {
             logIn(user).
             subscribe(
             response => {
-                console.log(response);
-                if (response.data == null) {
-                    alert(response.message);
-                } else {
-                    localStorage.setItem('token', response.token);
-                    window.location.href = '';
-                }
+                response.then(res => {
+                    if (res.data == null) {
+                        alert(res.message);
+                    } else {
+                        localStorage.setItem('token', res.token);
+                        window.location.href = '';
+                    }
+                    alert(res.message);
+                })
+                    .catch(err => {
+                        alert(err.message);
+                    });
             }
             );
         // this.petService.getCats().subscribe(data => this.cats = data);

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationService {
     ApiUrl = 'http://localhost:3000';
     constructor(
-        private http: Http
+        private http: HttpClient
     ) { }
     logIn(user) {
         return this.http.post(this.ApiUrl + `/login`, JSON.stringify(user), this.getHeader())
@@ -16,15 +16,16 @@ export class AuthenticationService {
             window.location.href = '/login';
         }
     }
+    getToken() {
+        return localStorage.getItem('token');
+    }
+
     private getHeader() {
-        const headers = new Headers({
+        const headers = new HttpHeaders({
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Headers': 'access-control-allow-headers,access-control-allow-origin,content-type'
+            'Access-Control-Allow-Headers': 'access-control-allow-headers,access-control-allow-origin,content-type,authorization'
         });
-        const options = new RequestOptions({
-            headers: headers
-        });
-        return options;
+        return { headers: headers };
     }
 }

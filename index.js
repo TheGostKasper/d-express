@@ -6,11 +6,14 @@ var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config'); // get our config file
 var mdb = require('./mongodb');
 var path = require('path');
+var cors = require('cors')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extented: true
 }));
+app.use(cors());
+
 app.set('superSecret', config.secret);
 var middleware = require('./app/controllers/middleware.js')(app);
 var pets = require('./app/controllers/pets.js')(app);

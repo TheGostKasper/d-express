@@ -1,5 +1,6 @@
-var User = require('./../models/user');
-var jwt = require('jsonwebtoken');
+const User = require('./../models/user');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 module.exports = function (app) {
     app.post('/api/user', (req, res) => {
@@ -84,7 +85,6 @@ module.exports = function (app) {
 
     app.post('/login', (req, res) => {
         var _body = req.body;
-        console.log(_body)
         User.findOne({ email: _body.email, password: _body.password }
             , (err, user) => {
                 if (err || !user) return res.json({
@@ -96,7 +96,7 @@ module.exports = function (app) {
                         user: user
                     };
                     var token = jwt.sign(payload, app.get('superSecret'));
-                   return res.json({
+                    return res.json({
                         data: user,
                         token: token,
                         message: "Welcome back! "
@@ -104,5 +104,40 @@ module.exports = function (app) {
                 }
 
             })
+    })
+
+    app.post('/api/track', (req, res) => {
+        let fd;
+        try {
+            fd = fs.openSync('./message.txt', 'a');
+            fs.appendFileSync('./message.txt', req.body.message, 'utf8');
+        } catch (err) {
+            /* Handle the error */
+        } finally {
+            if (fd) {
+                res.send({
+                    message: 'Successfully saved'
+                })
+                fs.closeSync(fd);
+            }
+        }
+    });
+    app.post('/api/upload/image', (req, res) => {
+        let fd;
+        try {
+            // fd = fs.openSync('./images/message.png', 'a');
+            //const name = req.body.name + '.' + req.body.type;
+            fs.appendFileSync('./images/' + 'name.txt', req.body.avatar, 'utf8');
+        } catch (err) {
+            console.log(err);
+            /* Handle the error */
+        } finally {
+            //if (fd) {
+            res.send({
+                message: 'Successfully saved'
+            })
+            fs.closeSync(fd);
+        }
+        //}
     })
 }

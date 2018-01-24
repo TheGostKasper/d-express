@@ -12,7 +12,7 @@ module.exports = function (app) {
         res.json({ message: 'cat created successfully', data: _cats });
     });
 
-    
+
     function addPet(pet) {
         var _pet = new Pet({
             name: pet.name,
@@ -44,10 +44,10 @@ module.exports = function (app) {
     });
 
     app.get('/api/cat/:id', function (req, res) {
-        Pet.find({_id:req.params.id}, function (err, user) {
+        Pet.find({ _id: req.params.id }, function (err, user) {
             if (err) res.send({
                 data: null,
-                err:err
+                err: err
             });
             res.send({
                 data: user,
@@ -58,10 +58,10 @@ module.exports = function (app) {
     });
 
     app.put('/api/cat/:id', function (req, res) {
-        Pet.findOneAndUpdate({_id:req.params.id},req.body, function (err, user) {
+        Pet.findOneAndUpdate({ _id: req.params.id }, req.body, function (err, user) {
             if (err) res.send({
                 data: null,
-                err:err
+                err: err
             });
             res.send({
                 data: user,
@@ -74,10 +74,10 @@ module.exports = function (app) {
         _cats = _.remove(_cats, function (cat) {
             return cat.id != req.params.id
         });
-        Pet.findOneAndRemove({_id:req.params.id}, function (err) {
+        Pet.findOneAndRemove({ _id: req.params.id }, function (err) {
             if (err) res.send({
                 data: null,
-                err:err
+                err: err
             });
             res.send({
                 data: user,
@@ -86,5 +86,5 @@ module.exports = function (app) {
         });
     })
 
-
+   
 }

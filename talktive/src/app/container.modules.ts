@@ -10,14 +10,21 @@ import { PetsComponent } from './pets/app.pets';
 import { LoginComponent } from './login/app.login';
 import { InterestsComponent } from './interests/app.interests';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { AuthInterceptor } from './services/interceptor';
 
 export class Container {
-    declarations= [
+    declarations = [
         AppComponent,
         UserComponent,
         PetsComponent,
         LoginComponent,
         InterestsComponent
     ];
-    providers= [AuthenticationService, PetService, InterestsService];
+    providers = [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true,
+    }, AuthenticationService, PetService, InterestsService];
 }
