@@ -125,9 +125,10 @@ module.exports = function (app) {
     app.post('/api/upload/image', (req, res) => {
         let fd;
         try {
+            console.log(req.body.avatar.changingThisBreaksApplicationSecurity)
             // fd = fs.openSync('./images/message.png', 'a');
             //const name = req.body.name + '.' + req.body.type;
-            fs.appendFileSync('./images/' + 'name.txt', req.body.avatar, 'utf8');
+             fs.appendFileSync('./images/' + 'name.txt', req.body.avatar.changingThisBreaksApplicationSecurity, 'utf8');
         } catch (err) {
             console.log(err);
             /* Handle the error */
@@ -136,7 +137,7 @@ module.exports = function (app) {
             res.send({
                 message: 'Successfully saved'
             })
-            fs.closeSync(fd);
+            //fs.closeSync(fd);
         }
         //}
     })

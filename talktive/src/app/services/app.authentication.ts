@@ -1,15 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
-    ApiUrl = 'http://localhost:3000';
+    ApiUrl = 'http://iisnode.local.com';
     constructor(
         private http: HttpClient
     ) { }
     logIn(user) {
-        return this.http.post(this.ApiUrl + `/login`, JSON.stringify(user), this.getHeader())
-            .map((res: Response) => res.json());
+        return new Observable(observer => {
+            this.http.post(this.ApiUrl + `/login`, JSON.stringify(user), this.getHeader())
+                .subscribe(
+                (response: Response) => {
+                    console.log(response);
+                    observer.next(response);
+                    observer.complete();
+                },
+                error => {
+                    observer.error(error);
+                });
+        });
+
     }
     checkToken() {
         if (!localStorage.getItem('token')) {

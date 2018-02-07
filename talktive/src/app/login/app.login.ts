@@ -22,23 +22,15 @@ export class LoginComponent implements OnInit {
         this.authenticationService.
             logIn(user).
             subscribe(
-            response => {
-                response.then(res => {
-                    if (res.data == null) {
-                        alert(res.message);
-                    } else {
-                        localStorage.setItem('token', res.token);
-                        window.location.href = '';
-                    }
+            (res: any) => {
+                if (res.data == null) {
                     alert(res.message);
-                })
-                    .catch(err => {
-                        alert(err.message);
-                    });
-            }
-            );
-        // this.petService.getCats().subscribe(data => this.cats = data);
+                } else {
+                    localStorage.setItem('token', res.token);
+                    window.location.href = '';
+                }
+                alert(res.message);
+            });
     }
-
-
+    // this.petService.getCats().subscribe(data => this.cats = data);
 }

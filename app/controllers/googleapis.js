@@ -55,5 +55,14 @@ module.exports = function (app) {
                 message: "200"
             });
         });
+    });
+
+    app.get('/api/journal', (req, res) => {
+        Feed.load('https://journal.thriveglobal.com/feed', function (err, rss) {
+            res.json({
+                data: rss,
+                message: "200"
+            });
+        });
     })
 }

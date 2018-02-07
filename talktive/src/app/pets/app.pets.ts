@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PetService } from './../services/app.service.pet';
 import { AuthenticationService } from './../services/app.authentication';
+import { Buffer } from 'buffer';
+
+import * as lzma from 'lzma-purejs';
 
 @Component({
     selector: 'app-pets',
@@ -18,6 +21,7 @@ export class PetsComponent implements OnInit {
     constructor(private petService: PetService, private authentication: AuthenticationService, private _sanitizer: DomSanitizer) {
         authentication.checkToken();
     }
+
     ngOnInit() {
         this.petService.getCats().subscribe(
             response => {
@@ -40,8 +44,13 @@ export class PetsComponent implements OnInit {
     }
     private _handleReaderLoaded(readerEvt) {
         const binaryString = readerEvt.target.result;
+        const strB64 = 'data:image/jpg;base64,' + btoa(binaryString);
+
         this.base64textString = this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
             + btoa(binaryString));
+
+        const data = new Buffer(strB64, 'utf8');
+        // const compressed = lzma.compressFile(this.base64textString);
         this.userAvatar = {
             avatar: this.base64textString
         };

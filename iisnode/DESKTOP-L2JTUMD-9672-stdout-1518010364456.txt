@@ -1,0 +1,11 @@
+Server running at whatever \\.\pipe\ab78bc2f-5ab7-40e2-b7da-a3036a8d92aa
+fuck
+fuck
+fuck
+fuck
+fuck
+fuck
+fuck
+fuck
+fuck
+[0mGET /api/journal [33m404 [0m4.767 ms - 150[0m
