@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from './../services/app.service.pet';
 import { AuthenticationService } from './../services/app.authentication';
 
 @Component({
@@ -13,9 +12,8 @@ export class LoginComponent implements OnInit {
     user: any = {
         email: 'Jie@gmail.com', password: '123456'
     };
-    constructor(private petService: PetService, private authenticationService: AuthenticationService) { }
+    constructor(private authenticationService: AuthenticationService) { }
     ngOnInit() {
-        // this.loadUser();
     }
 
     login(user) {
@@ -32,5 +30,4 @@ export class LoginComponent implements OnInit {
                 alert(res.message);
             });
     }
-    // this.petService.getCats().subscribe(data => this.cats = data);
 }

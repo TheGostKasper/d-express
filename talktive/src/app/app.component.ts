@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PetService } from './services/app.service.pet';
-import { AuthenticationService } from './services/app.authentication';
-
 
 @Component({
   selector: 'app-root',

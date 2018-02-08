@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { PetService } from './../services/app.service.pet';
+import { PetService } from './app.service.pet';
 import { AuthenticationService } from './../services/app.authentication';
 import { Buffer } from 'buffer';
 
