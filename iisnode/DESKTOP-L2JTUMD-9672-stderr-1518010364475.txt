@@ -1,2 +1,0 @@
-Wed, 07 Feb 2018 13:32:45 GMT body-parser deprecated undefined extended: provide extended option at index.js:13:20
-(node:9672) DeprecationWarning: `open()` is deprecated in mongoose >= 4.11.0, use `openUri()` instead, or set the `useMongoClient` option if using `connect()` or `createConnection()`. See http://mongoosejs.com/docs/connections.html#use-mongo-client
