@@ -12,4 +12,10 @@ export class InterestsComponent implements OnInit {
     ngOnInit() {
         // this.loadUser();
     }
+    sendDM() {
+        console.log('gil');
+        this.authenticationService.sendDM().subscribe((res: any) => {
+           console.log(res);
+        });
+    }
 }

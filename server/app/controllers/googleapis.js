@@ -47,11 +47,11 @@ module.exports = function (app) {
             });
         });
     });
-    app.post('/api/feed',(req,res)=>{
-    	Feed.load(req.body.url, function (err, rss) {
-            if(err) res.json({
-                data:null,
-                message:`This ${req.body.url} does not support RSS feeds`
+    app.post('/api/feed', (req, res) => {
+        Feed.load(req.body.url, function (err, rss) {
+            if (err) res.json({
+                data: null,
+                message: `This ${req.body.url} does not support RSS feeds`
             })
             res.json({
                 data: rss,
@@ -68,6 +68,7 @@ module.exports = function (app) {
         });
     });
 
+   
     app.get('/api/journal', (req, res) => {
         Feed.load('https://journal.thriveglobal.com/feed', function (err, rss) {
             res.json({

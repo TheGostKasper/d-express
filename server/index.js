@@ -22,6 +22,7 @@ var users = require('./app/controllers/users.js')(app);
 var interests = require('./app/controllers/interests.js')(app);
 var sourceFeed = require('./app/controllers/sourceFeed.js')(app);
 var yt3 = require('./app/controllers/googleapis.js')(app);
+var twitter = require('./app/controllers/Feeds/twitter.js')(app);
 
 
 // use morgan to log requests to the console
@@ -38,6 +39,6 @@ process.on('uncaughtException', function (err) {
 })
 
 
-app.listen(process.env.PORT, function () {
-     console.log(`Server running at whatever ${process.env.PORT}`);
+app.listen(3000, function () {
+     console.log(`Server running at whatever ${3000}`);
  });

@@ -5,24 +5,50 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
-    ApiUrl = 'http://iisnode.local.com';
+    ApiUrl = 'http://localhost:3000';
+    // 'http://iisnode.local.com';
     constructor(
         private http: HttpClient
     ) { }
     logIn(user) {
         return new Observable(observer => {
-            this.http.post(this.ApiUrl + `/login`, JSON.stringify(user), this.getHeader())
+            this.http.post(`${this.ApiUrl}/login`, JSON.stringify(user), this.getHeader())
                 .subscribe(
-                (response: Response) => {
-                    console.log(response);
-                    observer.next(response);
-                    observer.complete();
-                },
-                error => {
-                    observer.error(error);
-                });
+                    (response: Response) => {
+                        observer.next(response);
+                        observer.complete();
+                    },
+                    error => {
+                        observer.error(error);
+                    });
         });
 
+    }
+    signUp(user) {
+        return new Observable(observer => {
+            this.http.post(`${this.ApiUrl}/signUp`, JSON.stringify(user), this.getHeader())
+                .subscribe(
+                    (response: Response) => {
+                        observer.next(response);
+                        observer.complete();
+                    },
+                    error => {
+                        observer.error(error);
+                    });
+        });
+    }
+    sendDM() {
+        return new Observable(observer => {
+            this.http.post(`${this.ApiUrl}/api/twitter/DM`, JSON.stringify({ screen_name: '_mubo', text: 'fuck you' }), this.getHeader())
+                .subscribe(
+                    (response: Response) => {
+                        observer.next(response);
+                        observer.complete();
+                    },
+                    error => {
+                        observer.error(error);
+                    });
+        });
     }
     checkToken() {
         if (!localStorage.getItem('token')) {

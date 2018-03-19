@@ -1,7 +1,9 @@
 // Services
 import { PetService } from './pets/app.service.pet';
 import { AuthenticationService } from './services/app.authentication';
+import { Encryption } from './services/encryption';
 import { InterestsService } from './interests/app.interests.service';
+
 import { FeedsService } from './feeds/app.feeds.service';
 
 // Components
@@ -29,5 +31,5 @@ export class Container {
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptor,
         multi: true,
-    }, AuthenticationService, PetService, InterestsService, FeedsService];
+    }, AuthenticationService, PetService, InterestsService, FeedsService, Encryption];
 }

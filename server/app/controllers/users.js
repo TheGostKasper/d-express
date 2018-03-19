@@ -4,44 +4,25 @@ const fs = require('fs');
 
 module.exports = function (app) {
     app.post('/api/user', (req, res) => {
+
+        // testing 
         if (req.body.length > 1)
             req.body.forEach(function (element) {
-                addUser(element);
+                addUserAsync(element);
             }, this);
         else {
-            addUser(req.body);
+            addUserAsync(req.body);
         }
-        getUsers(res);
+        res.send({
+            data: req.body,
+            message: "come from db"
+        })
     });
-    function addUser(user) {
-        var _user = new User({
-            name: user.name,
-            username: user.username,
-            location: user.location,
-            password: user.password,
-            email: user.email
-        }).save(function (err) {
-            if (err) throw err;
-            console.log('User saved successfully!');
-        });
-    }
 
 
     app.get('/api/user', (req, res) => {
         getUsers(res);
     });
-    function getUsers(res) {
-        User.find({}, function (err, Users) {
-            if (err) res.json({
-                data: null,
-                message: JSON.stringify(err)
-            });
-            res.json({
-                data: Users,
-                message: "200"
-            });
-        });
-    }
     app.get('/api/user/:id', (req, res) => {
         User.find({ _id: req.params.id }, function (err, user) {
             if (err) res.send({
@@ -57,7 +38,7 @@ module.exports = function (app) {
     });
 
     app.put('/api/user/:id', (req, res) => {
-        User.findOneAndUpdate({ _id: req.params.id }, req.body, function (err, user) {
+        User.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, function (err, user) {
             if (err) res.send({
                 data: null,
                 err: err
@@ -92,20 +73,34 @@ module.exports = function (app) {
                     message: "Authentication faild, Username or password is incorect"
                 });
                 else {
-                    const payload = {
-                        user: user
-                    };
-                    var token = jwt.sign(payload, app.get('superSecret'));
                     return res.json({
                         data: user,
-                        token: token,
+                        token: getToken(user),
                         message: "Welcome back! "
                     })
                 }
 
             })
     })
+    app.post('/signUp', (req, res) => {
+        getUserAsync({ email: req.body.email }).then((e_user) => {
+            if (e_user.length > 0) {
+                res.send({
+                    data: null,
+                    message: "Email already exist, try another one!"
+                });
+            } else {
+                addUserAsync(req.body).then((response) => {
+                    res.send({
+                        data: response,
+                        token: getToken(response),
+                        message: "User added successfully"
+                    })
+                });
 
+            }
+        }).catch(err => { });
+    });
     app.post('/api/track', (req, res) => {
         let fd;
         try {
@@ -125,10 +120,9 @@ module.exports = function (app) {
     app.post('/api/upload/image', (req, res) => {
         let fd;
         try {
-            console.log(req.body.avatar.changingThisBreaksApplicationSecurity)
             // fd = fs.openSync('./images/message.png', 'a');
             //const name = req.body.name + '.' + req.body.type;
-             fs.appendFileSync('./images/' + 'name.txt', req.body.avatar.changingThisBreaksApplicationSecurity, 'utf8');
+            fs.appendFileSync('./images/' + 'name.txt', req.body.avatar.changingThisBreaksApplicationSecurity, 'utf8');
         } catch (err) {
             console.log(err);
             /* Handle the error */
@@ -140,5 +134,46 @@ module.exports = function (app) {
             //fs.closeSync(fd);
         }
         //}
-    })
+    });
+    function getToken(user) {
+        const payload = {
+            user: user
+        };
+       return jwt.sign(payload, app.get('superSecret'));
+    }
+    async function addUserAsync(user) {
+        let _results;
+        await new User({
+            name: user.name,
+            location: user.location,
+            password: user.password,
+            email: user.email
+        }).save(function (err, results) {
+            if (err) throw err;
+            _results = results;
+        });
+        return _results;
+    }
+    function getUsers(res) {
+        User.find({}, function (err, Users) {
+            if (err) res.json({
+                data: null,
+                message: JSON.stringify(err)
+            });
+            res.json({
+                data: Users,
+                message: "200"
+            });
+        });
+    }
+    async function getUserAsync(option) {
+        let _data;
+        await User.find(option).exec().then((data) => {
+            _data = data;
+        }).catch(err => {
+            _data = null;
+        });
+        return _data;
+    }
+
 }

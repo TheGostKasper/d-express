@@ -1,6 +1,6 @@
 <!-- fixed-top -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">TalkTive</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" *ngIf="token">
+    <a class="navbar-brand" routerLink="/">TalkTive</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,18 +9,18 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home
+                <a class="nav-link" routerLink="/">Home
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="interested">Interested</a>
+                <a class="nav-link" routerLink="/interested">Interested</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="users">Users</a>
+                <a class="nav-link" routerLink="/users">Users</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="feed">Feeds</a>
+                <a class="nav-link" routerLink="/feed">Feeds</a>
             </li>
         </ul>
         <div class="form-inline my-2 my-lg-0">

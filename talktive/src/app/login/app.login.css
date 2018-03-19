@@ -63,3 +63,8 @@
 .navbar{
     display: none !important;
 }
+.cont-div{
+    min-height: 300px;
+    padding-top: 50px;
+    text-align: center;
+}

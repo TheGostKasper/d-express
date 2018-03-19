@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         let _req = req;
-        if (!req.url.includes('/login')) {
+        if (!(req.url.includes('/login') || req.url.includes('/signUp'))) {
             const authHeader = localStorage.getItem('token');
             _req = req.clone({
                 headers: req.headers.set('Authorization', authHeader)
