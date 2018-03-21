@@ -16,13 +16,15 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 app.set('superSecret', config.secret);
-var middleware = require('./app/controllers/middleware.js')(app);
-var pets = require('./app/controllers/pets.js')(app);
-var users = require('./app/controllers/users.js')(app);
-var interests = require('./app/controllers/interests.js')(app);
-var sourceFeed = require('./app/controllers/sourceFeed.js')(app);
-var yt3 = require('./app/controllers/googleapis.js')(app);
-var twitter = require('./app/controllers/Feeds/twitter.js')(app);
+const controller='./app/controllers/';
+
+var middleware = require(`${controller}middleware.js`)(app);
+var pets = require(`${controller}Pets/petsCtrl.js`)(app);
+var users = require(`${controller}Users/usersCtrl.js`)(app);
+var interests = require(`${controller}Interests/interestsCtrl.js`)(app);
+var sourceFeed = require(`${controller}Feeds/sourceFeedsCtrl.js`)(app);
+var yt3 = require(`${controller}googleapis.js`)(app);
+var twitter = require(`${controller}twitter.js`)(app);
 
 
 // use morgan to log requests to the console

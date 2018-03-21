@@ -27,7 +27,7 @@
     text-align: -webkit-center;
 }
 .llogin{
-    border-radius: 20px;
+    border-radius: 8px;
     background: #fff;
     color: #1da1f2;
     background-color: #fff;
@@ -67,4 +67,7 @@
     min-height: 300px;
     padding-top: 50px;
     text-align: center;
+}
+._pnl{
+    margin-top: 60px;
 }

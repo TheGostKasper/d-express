@@ -1,54 +1,142 @@
-<div class="row">
-    <div class="col-sm _info">
-        <div class="image">
-            <img src="./assets/img/logo.png" class="center">
+<nav class="navbar navbar-inverse  navbar-fixed-top" style="display:block !important" role="navigation">
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
         </div>
-        <div class="content">
-            <p>Find out what you are looking at without wasting your time switching different websites. </p>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+                </li>
+                <li>
+                    <a href="aboutus.html">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> About</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="fa fa-envelope-o"></span> Contact</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a data-toggle="modal" data-target="#loginModal">
+                        <span class="glyphicon glyphicon-log-in"></span> login</a>
+                </li>
+                <li>
+                    <a data-toggle="modal" data-target="#signUpModal">
+                        <span class="glyphicon glyphicon-sign-up"></span> sign up</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="col-sm _login cont-div">
-        <form (ngSubmit)="login(user)" class="form-horizontal lform">
-            <p class="intro center">Log in to see more!</p>
-            <div class="form-group">
-                <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
+</nav>
+<section class="_pnl youtube">
+    <div class="panel panel-danger">
+        <div class="panel-heading">Youtube</div>
+        <div class="panel-body">
+                <div class="card small">
+                        <div class="crd-img">
+                            <img class="m-image" src="http://weelo.s3-website-us-east-1.amazonaws.com/155x155/65cfa94e2fa14344baf6d316b5ce583f.jpg" data-fullimg="http://weelo.s3-website-us-east-1.amazonaws.com/155x155/65cfa94e2fa14344baf6d316b5ce583f.jpg">
+                            <div class="p-info">
+                                <div class="p-price"><span> 15.25 EGP </span> </div>
+                                <div class="text-left crd-info" data-barcode="6221007025894">
+                                        <div class="p-name">  نستلة سيريلاك قمح مع حليب 125جم </div>
+                                        <span class=""> 125 gr </span>
+                                <div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div></div>
+        </div>
+    </div>
+</section>
+<section class="_pnl wamda">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Wamda</div>
+            <div class="panel-body">
+                
             </div>
-            <div class="form-group">
-                <input type="password" id="passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
+        </div>
+    </section>
+
+<div id="signUpModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> &times;</button>
+                <h4>Sign up</h4>
             </div>
-            <div class="form-group center">
-                <button type="submit" class="btn llogin">Log in</button>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="email" id="s_email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-8">
+                            <input type="password" id="s_passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-8">
+                            <input class="intp" placeholder="Username" name="name" required [(ngModel)]="user.name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-8">
+                            <input class="intp" placeholder="Mobile number" name="phone" required [(ngModel)]="user.phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <button type="submit" class="btn llogin">Sign in</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm _lbl cont-div">
-        <div class="content">
-            <span class="sec">Don't miss a beat from any of the publications you trust</span>
-            <span class="sec">Dive deeper by following blogs from the latest movers, shakers, and thinkers. Follow any one on the web.</span>
-            <span class="sec">See new videos from the YouTube channels you follow - in the same place you read the rest of your news.</span>
-            <span class="sec">Crunch through more content in less time by organizing your sources into easy-to-read feeds.</span>
+
+<div id="loginModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"> &times;</button>
+                <h4>Login</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal lform" (ngSubmit)="login(user)">
+                    <p class="intro center">Welcome!</p>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+
+                        <div class="form-group center">
+                            <button type="submit" class="btn llogin">Login</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="col-sm black cont-div">
-        <form class="form-horizontal lform" (ngSubmit)="signUp(user)">
-            <p class="intro center">You're more welcome!</p>
-            <div class="form-group">
-                <input type="email" id="s_email" name="email" [(ngModel)]="user.email" required class="intp" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="password" id="s_passwords" name="passwords" [(ngModel)]="user.password" required class="intp" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <input class="intp" placeholder="Username" name="name" required [(ngModel)]="user.name">
-            </div>
-            <div class="form-group">
-                <input class="intp" placeholder="Mobile number" name="phone" required [(ngModel)]="user.phone">
-            </div>
-            <div class="form-group center">
-                <button type="submit" class="btn llogin">Sign up</button>
-            </div>
-        </form>
     </div>
 </div>

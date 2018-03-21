@@ -45,4 +45,13 @@ export class LoginComponent implements OnInit {
             alert(res.message);
         });
     }
+
+
+    getYoutube() {
+
+    }
+
+    getWamda() {
+
+    }
 }
